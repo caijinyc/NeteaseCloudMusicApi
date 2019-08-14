@@ -64,7 +64,7 @@ fs.readdirSync(path.join(__dirname, 'module')).reverse().forEach(file => {
     if(!(/\.js$/i.test(file))) return
     let route = (file in special) ? special[file] : '/' + file.replace(/\.js$/i, '').replace(/_/g, '/')
     let question = require(path.join(__dirname, 'module', file))
-    
+
     app.use(route, (req, res) => {
         let query = Object.assign({}, req.query, req.body, {cookie: req.cookies})
         question(query, request)
@@ -82,10 +82,10 @@ fs.readdirSync(path.join(__dirname, 'module')).reverse().forEach(file => {
     })
 })
 
-const port = process.env.PORT || 3000
+// const port = process.env.PORT || 3000
 
-app.server = app.listen(port, () => {
-    console.log(`server running @ http://localhost:${port}`)
-})
+// app.server = app.listen(port, () => {
+//     console.log(`server running @ http://localhost:${port}`)
+// })
 
 module.exports = app
